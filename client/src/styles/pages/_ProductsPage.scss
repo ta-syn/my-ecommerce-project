@@ -1,0 +1,21 @@
+// client/src/styles/pages/_ProductsPage.scss
+
+@use '../abstracts' as *;
+
+.products-page {
+  max-width: $container-width;
+  margin: $spacing-xl auto;
+  padding: 0 $container-padding;
+
+  .page-title {
+    text-align: center;
+    margin-bottom: $spacing-xl;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-lg;
+    margin-bottom: $spacing-xl;
+  }
+}

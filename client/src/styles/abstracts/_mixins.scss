@@ -1,0 +1,52 @@
+// client/src/styles/abstracts/_mixins.scss
+
+@use 'variables' as *;
+
+// ফ্লেক্সবক্স মিক্সিন
+@mixin flex-center($direction: row) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: $direction;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// বাটন স্টাইল মিক্সিন
+@mixin button-styles($bg-color: $primary-color, $text-color: $white-color) {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: $border-radius;
+  font-family: $primary-font;
+  font-weight: $font-weight-medium;
+  text-align: center;
+  cursor: pointer;
+  transition: $transition-fast;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// মিডিয়া কোয়েরি মিক্সিন (Responsive Design)
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (max-width: 768px) { @content; }
+  }
+  @if $breakpoint == mobile {
+    @media (max-width: 576px) { @content; }
+  }
+}

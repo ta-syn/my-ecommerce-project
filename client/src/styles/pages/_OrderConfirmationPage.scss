@@ -1,0 +1,54 @@
+// client/src/styles/pages/_OrderConfirmationPage.scss
+@use '../abstracts' as *;
+
+.order-confirmation-page {
+  @include flex-center;
+  min-height: 80vh;
+  text-align: center;
+  
+  .confirmation-box {
+    background: $white-color;
+    padding: $spacing-xxl;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    max-width: 600px;
+    
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background-color: $success-color;
+      color: $white-color;
+      font-size: 3rem;
+      @include flex-center;
+      margin: 0 auto $spacing-lg;
+    }
+    
+    .confirmation-title {
+      color: $success-color;
+    }
+    
+    .order-id {
+      background-color: $background-color;
+      padding: $spacing-sm $spacing-md;
+      display: inline-block;
+      border-radius: $border-radius;
+      margin: $spacing-lg 0;
+    }
+    
+    .confirmation-actions {
+      margin-top: $spacing-xl;
+      display: flex;
+      gap: $spacing-md;
+      justify-content: center;
+      
+      .action-button {
+        @include button-styles();
+        &.secondary {
+            @include button-styles($white-color, $primary-color);
+            border: 1px solid $primary-color;
+        }
+      }
+    }
+  }
+}

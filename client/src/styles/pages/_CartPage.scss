@@ -1,0 +1,32 @@
+@use '../abstracts' as *;
+
+.cart-page {
+  max-width: $container-width;
+  margin: $spacing-xl auto;
+
+  .cart-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: $spacing-xl;
+
+    @include respond-to(tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .cart-item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .cart-summary {
+    background-color: $white-color;
+    padding: $spacing-lg;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+  }
+}

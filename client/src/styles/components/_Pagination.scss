@@ -1,0 +1,39 @@
+// client/src/styles/components/_Pagination.scss
+@use '../abstracts' as *;
+
+.pagination-container {
+  @include flex-center;
+  margin-top: $spacing-xl;
+  
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    
+    .page-item {
+      margin: 0 $spacing-xs;
+      
+      .page-link {
+        @include button-styles($white-color, $primary-color);
+        border: 1px solid $border-color;
+        transition: $transition-fast;
+        
+        &:hover {
+          background-color: lighten($primary-color, 55%);
+        }
+      }
+      
+      &.active .page-link {
+        background-color: $primary-color;
+        color: $white-color;
+        border-color: $primary-color;
+      }
+      
+      &.disabled .page-link {
+        opacity: 0.6;
+        cursor: not-allowed;
+        background-color: $white-color;
+      }
+    }
+  }
+}

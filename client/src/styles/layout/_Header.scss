@@ -1,0 +1,119 @@
+// client/src/styles/layout/_Header.scss
+
+@use '../abstracts' as *;
+
+.header {
+  background-color: $white-color;
+  box-shadow: $box-shadow;
+  padding: 0 $container-padding;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  .header-container {
+    max-width: $container-width;
+    margin: 0 auto;
+    height: 80px;
+    @include flex-between;
+  }
+
+  .header-logo {
+    .logo-img {
+      height: 40px;
+    }
+  }
+
+  .header-nav {
+    display: flex;
+    gap: $spacing-lg;
+
+    .nav-link {
+      font-size: $font-size-base;
+      font-weight: $font-weight-medium;
+      color: $text-color;
+      text-decoration: none;
+      position: relative;
+      padding: $spacing-sm 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: $primary-color;
+        transition: $transition-fast;
+      }
+      
+      &.active, &:hover {
+        color: $primary-color;
+      }
+      
+      &.active::after, &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+
+    .action-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: $text-color;
+      position: relative;
+      display: flex;
+      
+      .cart-badge {
+        position: absolute;
+        top: -5px;
+        right: -8px;
+        background-color: $error-color;
+        color: $white-color;
+        font-size: 10px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        @include flex-center;
+        font-weight: bold;
+      }
+    }
+  }
+  
+  .mobile-menu-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+  }
+
+  // Responsive Styles
+  @include respond-to(tablet) {
+    .header-nav {
+        display: none;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: $white-color;
+        flex-direction: column;
+        padding: $spacing-lg;
+        box-shadow: $box-shadow;
+        
+        &.active {
+            display: flex;
+        }
+    }
+    
+    .mobile-menu-toggle {
+        display: block;
+    }
+  }
+}

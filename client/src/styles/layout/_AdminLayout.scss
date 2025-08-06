@@ -1,0 +1,20 @@
+// client/src/styles/layout/_AdminLayout.scss
+@use '../abstracts' as *;
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  
+  .admin-sidebar {
+    width: 250px;
+    background-color: $text-color;
+    color: $white-color;
+    padding: $spacing-lg;
+  }
+  
+  .admin-main-content {
+    flex-grow: 1;
+    padding: $spacing-xl;
+    background-color: $background-color;
+  }
+}

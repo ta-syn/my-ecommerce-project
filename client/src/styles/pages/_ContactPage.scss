@@ -1,0 +1,35 @@
+// client/src/styles/pages/_ContactPage.scss
+
+@use '../abstracts' as *;
+
+.contact-page {
+    .page-container {
+        max-width: $container-width;
+        margin: $spacing-xl auto;
+        padding: 0 $container-padding;
+    }
+    .page-title, .page-subtitle {
+        text-align: center;
+    }
+    
+    .contact-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: $spacing-xl;
+        margin-top: $spacing-xl;
+        
+        @include respond-to(tablet) {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .contact-form {
+        padding: $spacing-md;
+    }
+
+    
+    .contact-info-container {
+        h3 { margin-top: 0; }
+        p { margin-bottom: $spacing-md; }
+    }
+}

@@ -1,0 +1,73 @@
+// client/src/styles/pages/_AuthPages.scss
+
+@use '../abstracts' as *;
+
+.auth-page {
+  min-height: 80vh;
+  @include flex-center;
+  padding: $spacing-xl;
+
+  .auth-container {
+    width: 100%;
+    max-width: 450px;
+    padding: $spacing-xl;
+    background-color: $white-color;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+
+    .auth-title {
+      text-align: center;
+      margin-bottom: $spacing-lg;
+    }
+
+    .error-message, .success-message {
+      text-align: center;
+      padding: $spacing-sm;
+      border-radius: $border-radius;
+      margin-bottom: $spacing-md;
+    }
+    
+    .error-message {
+        background-color: lighten($error-color, 35%);
+        color: $error-color;
+    }
+    
+    .success-message {
+        background-color: lighten($success-color, 35%);
+        color: $success-color;
+    }
+
+    .form-group {
+      margin-bottom: $spacing-md;
+
+      label {
+        display: block;
+        font-weight: $font-weight-medium;
+        margin-bottom: $spacing-sm;
+      }
+      
+      input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid $border-color;
+        border-radius: $border-radius;
+      }
+    }
+
+    .auth-button {
+      @include button-styles();
+      width: 100%;
+      margin-top: $spacing-sm;
+    }
+
+    .auth-footer {
+      margin-top: $spacing-lg;
+      text-align: center;
+      font-size: $font-size-sm;
+      
+      p {
+          margin: $spacing-sm 0;
+      }
+    }
+  }
+}

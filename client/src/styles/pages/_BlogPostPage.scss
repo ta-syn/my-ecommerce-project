@@ -1,0 +1,25 @@
+// client/src/styles/pages/_BlogPostPage.scss
+@use '../abstracts' as *;
+
+.blog-post-page {
+    max-width: 900px;
+    margin: $spacing-xl auto;
+    background-color: $white-color;
+    padding: $spacing-xl;
+    
+    .post-header {
+        text-align: center;
+        margin-bottom: $spacing-xl;
+    }
+    
+    .post-featured-image {
+        width: 100%;
+        margin-bottom: $spacing-xl;
+        border-radius: $border-radius;
+    }
+    
+    .post-body {
+        line-height: 1.8;
+        h3 { margin-top: $spacing-xl; }
+    }
+}

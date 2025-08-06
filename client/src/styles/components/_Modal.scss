@@ -1,0 +1,40 @@
+// client/src/styles/components/_Modal.scss
+
+@use '../abstracts' as *;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  @include flex-center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: $white-color;
+  padding: $spacing-xl;
+  border-radius: $border-radius;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  @include flex-between;
+  margin-bottom: $spacing-md;
+
+  .modal-title {
+    margin-bottom: 0;
+  }
+  
+  .modal-close-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+}

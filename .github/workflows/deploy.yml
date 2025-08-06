@@ -1,0 +1,42 @@
+name: Spondonhub Deploy
+
+on:
+  push:
+    branches:
+      - main # শুধুমাত্র main ব্রাঞ্চে পুশ করলে ডিপ্লয় হবে
+
+jobs:
+  #--------------------------------
+  # Frontend Deployment (to Vercel)
+  #--------------------------------
+  deploy-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./client
+
+  #--------------------------------
+  # Backend Deployment (to Heroku)
+  #--------------------------------
+  deploy-backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "spondonhub-server" # আপনার Heroku অ্যাপের নাম
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          # Heroku অ্যাপটি server ফোল্ডারে আছে তা নির্দিষ্ট করতে হবে
+          appdir: "server" 

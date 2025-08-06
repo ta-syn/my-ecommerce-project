@@ -1,0 +1,59 @@
+// client/src/styles/pages/_AdminPages.scss
+@use '../abstracts' as *;
+
+.admin-page-title {
+  margin-bottom: $spacing-xl;
+}
+
+.table-container {
+  background-color: $white-color;
+  border-radius: $border-radius;
+  padding: $spacing-lg;
+  box-shadow: $box-shadow;
+  overflow-x: auto; // টেবিল বড় হলে যেন স্ক্রল করা যায়
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    th, td {
+      padding: $spacing-md;
+      text-align: left;
+      border-bottom: 1px solid $border-color;
+    }
+    
+    thead {
+      background-color: $background-color;
+    }
+    
+    .action-cell {
+      display: flex;
+      gap: $spacing-sm;
+    }
+    
+    .action-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      
+      &.edit-btn { color: $primary-color; }
+      &.delete-btn { color: $error-color; }
+    }
+  }
+}
+
+.add-new-btn {
+  @include button-styles();
+}
+
+.status-badge {
+    padding: $spacing-xs $spacing-sm;
+    border-radius: 12px;
+    font-size: $font-size-sm;
+    
+    &.status-shipped { background-color: lighten($primary-color, 30%); color: $primary-color; }
+    &.status-pending { background-color: lighten($accent-color, 30%); color: $accent-color; }
+    &.status-delivered { background-color: lighten($success-color, 30%); color: $success-color; }
+    &.status-canceled { background-color: lighten($error-color, 30%); color: $error-color; }
+}

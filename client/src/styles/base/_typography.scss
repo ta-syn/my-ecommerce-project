@@ -1,0 +1,49 @@
+// client/src/styles/base/_typography.scss
+
+@use '../abstracts/variables' as *;
+
+body {
+  font-family: $primary-font, sans-serif;
+  font-size: $font-size-base;
+  color: $text-color;
+  background-color: $background-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $secondary-font, sans-serif;
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-md;
+}
+
+h1 {
+  font-size: 2.5rem; // 40px
+}
+
+h2 {
+  font-size: 2rem; // 32px
+}
+
+h3 {
+  font-size: 1.5rem; // 24px
+}
+
+p {
+  margin-bottom: $spacing-md;
+  line-height: 1.6;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: $transition-fast;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+ul, ol {
+    padding-left: 20px;
+    margin-bottom: $spacing-md;
+}

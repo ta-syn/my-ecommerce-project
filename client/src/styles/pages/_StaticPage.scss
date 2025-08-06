@@ -1,0 +1,19 @@
+// client/src/styles/pages/_StaticPage.scss
+@use '../abstracts' as *;
+
+.static-page {
+  max-width: 900px;
+  margin: $spacing-xl auto;
+  padding: $container-padding;
+  background-color: $white-color;
+  border-radius: $border-radius;
+  
+  .page-title {
+      border-bottom: 2px solid $border-color;
+      padding-bottom: $spacing-md;
+  }
+  
+  .page-section {
+      margin-bottom: $spacing-lg;
+  }
+}

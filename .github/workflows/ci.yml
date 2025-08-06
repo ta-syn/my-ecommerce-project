@@ -1,0 +1,77 @@
+name: Spondonhub CI
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  #--------------------------------
+  # Backend (Server) CI Job
+  #--------------------------------
+  server-ci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    defaults:
+      run:
+        working-directory: ./server
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: server/package-lock.json
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run linter (Check code quality)
+      run: npm run lint
+
+    - name: Run tests
+      run: npm test
+
+  #--------------------------------
+  # Frontend (Client) CI Job
+  #--------------------------------
+  client-ci:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    defaults:
+      run:
+        working-directory: ./client
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: client/package-lock.json
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run linter (Check code quality)
+      run: npm run lint
+      
+    - name: Build project (Check for build errors)
+      run: npm run build
+

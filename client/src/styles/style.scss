@@ -1,0 +1,38 @@
+// client/src/styles/style.scss
+
+// 1. Abstracts
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+
+// 2. Base
+@use 'base/reset';
+@use 'base/typography';
+
+// 3. Components
+@use 'components/Button';
+@use 'components/Modal';
+@use 'components/ProductCard';
+@use 'components/Pagination';
+
+// 4. Layout
+@use 'layout/Header';
+@use 'layout/Footer';
+@use 'layout/AdminLayout';
+
+// 5. Pages
+@use 'pages/HomePage';
+@use 'pages/ProductsPage';
+@use 'pages/ProductDetailsPage';
+@use 'pages/CartPage';
+@use 'pages/CheckoutPage';
+@use 'pages/OrderConfirmationPage';
+@use 'pages/AuthPages';
+@use 'pages/CustomerDashboardPage';
+@use 'pages/BlogPage';
+@use 'pages/BlogPostPage';
+@use 'pages/StaticPage';
+@use 'pages/AdminPages';
+@use 'pages/ContactPage';
+
+// 6. Utilities
+// ... (প্রয়োজনে যোগ করা হবে)```
