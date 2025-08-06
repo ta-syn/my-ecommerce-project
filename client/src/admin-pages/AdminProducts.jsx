@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaEdit, FaTrash, FaPlus } from 'react-icons/fa';
-import './AdminProducts.css'; // স্টাইল পরে যোগ হবে
+import '../styles/pages/_AdminPages.scss';
 
 // স্যাম্পল ডেটা (পরে API থেকে আসবে)
 const initialProducts = [

@@ -1,6 +1,7 @@
 // client/src/styles/pages/_HomePage.scss
 
-@use '../abstracts' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .homepage {
   .hero-section {

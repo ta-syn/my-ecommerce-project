@@ -1,5 +1,6 @@
 // client/src/styles/pages/_AdminPages.scss
-@use '../abstracts' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .admin-page-title {
   margin-bottom: $spacing-xl;

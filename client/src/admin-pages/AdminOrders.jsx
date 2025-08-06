@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AdminOrders.css'; // স্টাইল পরে যোগ হবে
+import '../styles/pages/_AdminPages.scss';
 
 // স্যাম্পল ডেটা
 const initialOrders = [

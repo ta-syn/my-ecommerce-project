@@ -1,5 +1,6 @@
 // client/src/styles/pages/_CheckoutPage.scss
-@use '../abstracts' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .checkout-page {
   max-width: 900px;

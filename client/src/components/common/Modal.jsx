@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Modal.css'; // আমরা পরে স্টাইল যোগ করব
+import '../../../styles/components/_Modal.scss';
 
 const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) {

@@ -1,6 +1,7 @@
 // client/src/styles/layout/_Header.scss
 
-@use '../abstracts' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .header {
   background-color: $white-color;

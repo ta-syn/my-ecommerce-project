@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaDollarSign, FaShoppingCart, FaUsers, FaBoxOpen } from 'react-icons/fa';
-import './AdminDashboard.css'; // স্টাইল পরে যোগ হবে
+import '../styles/pages/_AdminPages.scss';
 
 // StatCard নামে একটি ছোট কম্পোনেন্ট তৈরি করা হলো ড্যাশবোর্ডের জন্য
 const StatCard = ({ icon, title, value, color }) => (

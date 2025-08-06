@@ -1,6 +1,7 @@
 // client/src/styles/base/_typography.scss
 
 @use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 body {
   font-family: $primary-font, sans-serif;

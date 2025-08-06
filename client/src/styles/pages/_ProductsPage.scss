@@ -1,6 +1,7 @@
 // client/src/styles/pages/_ProductsPage.scss
 
-@use '../abstracts' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .products-page {
   max-width: $container-width;

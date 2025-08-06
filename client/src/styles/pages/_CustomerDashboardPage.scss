@@ -1,5 +1,6 @@
 // client/src/styles/pages/_CustomerDashboardPage.scss
-@use '../abstracts' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .dashboard-page {
   max-width: $container-width;
