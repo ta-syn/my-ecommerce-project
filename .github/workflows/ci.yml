@@ -7,75 +7,53 @@ on:
     branches: [ "main" ]
 
 jobs:
-  #--------------------------------
-  # Backend (Server) CI Job
-  #--------------------------------
   server-ci:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.x]
-
     defaults:
       run:
         working-directory: ./server
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: server/package-lock.json
-
     - name: Install dependencies
       run: npm install
-
-    - name: Run linter (Check code quality)
+    - name: Run linter
       run: npm run lint
-
     - name: Run tests
+      env:
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
       run: npm test
 
-  #--------------------------------
-  # Frontend (Client) CI Job
-  #--------------------------------
   client-ci:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.x]
-
     defaults:
       run:
         working-directory: ./client
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        # crucial: Make sure this file exists in your repository.
-        # This path is relative to the root of your project.
-        # If this step fails, it's because 'client/package-lock.json' was not found.
-        # You need to commit and push this file from your local machine.
         cache-dependency-path: 'client/package-lock.json'
-
     - name: Install dependencies
       run: npm install
-
-    - name: Run linter (Check code quality)
+    - name: Run linter
       run: npm run lint
-      
-    - name: Build project (Check for build errors)
+    - name: Build project
       run: npm run build
 

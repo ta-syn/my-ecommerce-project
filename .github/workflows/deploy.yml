@@ -3,54 +3,21 @@ name: Spondonhub Deploy
 on:
   push:
     branches:
-      - main # শুধুমাত্র main ব্রাঞ্চে পুশ করলে ডিপ্লয় হবে
+      - main
 
 jobs:
-  #--------------------------------
-  # Frontend Deployment (to Vercel)
-  #--------------------------------
-  deploy-frontend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          # VERY IMPORTANT: These secrets must be created in your GitHub repository settings.
-          # Go to: Settings > Secrets and variables > Actions > New repository secret
-          # Create secrets for VERCEL_TOKEN, VERCEL_ORG_ID, and VERCEL_PROJECT_ID.
-          # The error you are seeing is because VERCEL_TOKEN is missing.
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          # This action automatically detects the root directory based on your Vercel project settings.
-          # If your frontend code is in the 'client' folder, make sure you have set 'client'
-          # as the "Root Directory" in your Vercel project's settings.
-
-  #--------------------------------
-  # Backend Deployment (to Heroku)
-  #--------------------------------
   deploy-backend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
       - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          # These secrets must also exist in your GitHub repository settings.
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "spondonhub-server" # Your Heroku app name
+          heroku_app_name: "spondonhub-server"
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          
-          # CHANGE 1: Added 'dontautocreate'.
-          # This prevents the action from trying to create a new app if it already exists.
-          # The error "heroku create ... failed" will be resolved by this.
           dontautocreate: true
-          
-          # CHANGE 2: Specify the subdirectory for deployment using 'appdir'.
-          # This tells Heroku that your application code is inside the "server" folder.
           appdir: "server"
