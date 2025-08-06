@@ -1,6 +1,7 @@
 // client/src/styles/components/_ProductCard.scss
 
-@use '../abstracts' as *;
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .product-card {
   background-color: $white-color;

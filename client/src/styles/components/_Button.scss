@@ -1,6 +1,8 @@
 // client/src/styles/components/_Button.scss
 
-@use '../abstracts' as *;
+// CHANGE: Directly importing the necessary files instead of the whole folder
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
 
 .btn {
   @include button-styles();
