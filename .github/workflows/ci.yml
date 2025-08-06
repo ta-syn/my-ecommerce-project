@@ -64,7 +64,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: client/package-lock.json
+        # crucial: Make sure this file exists in your repository.
+        # This path is relative to the root of your project.
+        # If this step fails, it's because 'client/package-lock.json' was not found.
+        # You need to commit and push this file from your local machine.
+        cache-dependency-path: 'client/package-lock.json'
 
     - name: Install dependencies
       run: npm install

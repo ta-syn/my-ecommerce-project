@@ -18,8 +18,9 @@ const connectDB = async () => {
     console.log('MongoDB connected successfully.');
   } catch (error) {
     console.error('MongoDB connection failed:', error.message);
-    // সার্ভার চালু হতে ব্যর্থ হলে প্রসেস থেকে বের হয়ে যাবে
-    process.exit(1);
+    // CHANGE: process.exit(1) এর পরিবর্তে error টি throw করা হচ্ছে। 
+    // এটি server.js এ ধরা পড়বে এবং প্রসেস বন্ধ করবে।
+    throw error;
   }
 };
 

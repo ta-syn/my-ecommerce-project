@@ -23,4 +23,19 @@ module.exports = {
     // path resolving নিয়ে warning বন্ধ — আমরা নিজেরা ঠিকঠাক path handle করব
     'node/no-missing-require': 'off',
   },
+
+  // START: ADD THIS SECTION
+  // এই অংশটি যোগ করা হয়েছে
+  overrides: [
+    {
+      // শুধুমাত্র এই প্যাটার্নের ফাইলগুলোর জন্য নিচের নিয়ম প্রযোজ্য হবে
+      // এর মানে হলো, src/tests ফোল্ডারের ভেতরের সব ফাইল
+      files: ['src/tests/**/*.js', '**/*.test.js', '**/*.spec.js'],
+      rules: {
+        // devDependencies (যেমন supertest, mongodb-memory-server) require করার অনুমতি দাও
+        'node/no-unpublished-require': 'off',
+      },
+    },
+  ],
+  // END: ADD THIS SECTION
 };

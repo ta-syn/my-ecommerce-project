@@ -6,6 +6,8 @@ const registerUser = catchAsync(async (req, res) => {
   res.status(201).json({
     success: true,
     message: 'User registered successfully. Please login.',
+    // CHANGE: অব্যবহৃত ভেরিয়েবলের ওয়ার্নিং ঠিক করার জন্য user ডেটা রেসপন্সে যোগ করা হলো।
+    data: user, 
   });
 });
 
