@@ -56,7 +56,7 @@ describe('Auth API', () => {
       // THIS WILL NOW PASS: Expect a 400 error
       expect(res.statusCode).toEqual(400);
       expect(res.body.success).toBe(false);
-      expect(res.body.message).toEqual('Email already exists');
+      expect(res.body.message).toEqual('The email \'test@example.com\' is already in use.'); 
     });
   });
 });

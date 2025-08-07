@@ -2,51 +2,40 @@
 const userService = require('../services/user.service');
 
 const registerUser = async (req, res) => {
-  try {
-    const user = await userService.registerUser(req.body);
-    res.status(201).json({
-      success: true,
-      message: 'User registered successfully. Please login.',
-      data: user,
-    });
-  } catch (error) {
-    // THIS IS THE FINAL AND GUARANTEED FIX:
-    // We will check the error message directly instead of the status code.
-    if (error.message === 'Email already exists') {
-      return res.status(400).json({ // Directly sending 400
-        success: false,
-        message: error.message,
-      });
-    }
-    // For any other unexpected error
-    return res.status(500).json({
+  const result = await userService.registerUser(req.body);
+
+  // THIS IS THE FINAL FIX: We check if the service returned an error object
+  if (result.error) {
+    return res.status(result.statusCode).json({
       success: false,
-      message: 'An unexpected error occurred.',
+      message: result.message,
     });
   }
+
+  // If no error, send success response
+  res.status(201).json({
+    success: true,
+    message: 'User registered successfully. Please login.',
+    data: result,
+  });
 };
 
 const loginUser = async (req, res) => {
-  try {
     const { email, password } = req.body;
-    const { user, token } = await userService.loginUser(email, password);
-    res.status(200).json({
-      success: true,
-      message: 'Logged in successfully',
-      data: { user, token },
-    });
-  } catch (error) {
-    if (error.message === 'Invalid email or password') {
-        return res.status(401).json({ // Directly sending 401
+    const result = await userService.loginUser(email, password);
+
+    if (result.error) {
+        return res.status(result.statusCode).json({
             success: false,
-            message: error.message,
+            message: result.message,
         });
     }
-    return res.status(500).json({
-      success: false,
-      message: 'An unexpected error occurred.',
+
+    res.status(200).json({
+        success: true,
+        message: 'Logged in successfully',
+        data: result,
     });
-  }
 };
 
 const getUserProfile = (req, res) => {
