@@ -1,4 +1,8 @@
+// server/src/services/user.service.js
+
 const User = require('../models/user.model');
+const ApiError = require('../utils/ApiError'); // ApiError ইম্পোর্ট করা হচ্ছে
+const httpStatus = require('http-status'); // http-status ইম্পোর্ট করা হচ্ছে
 const jwt = require('jsonwebtoken');
 const jwtConfig = require('../config/jwt.js');
 
@@ -9,11 +13,17 @@ const jwtConfig = require('../config/jwt.js');
  */
 const registerUser = async (userData) => {
   const { email } = userData;
+  // FIX: Check if email is already taken using the model's static method if it exists, otherwise a direct findOne.
   if (await User.findOne({ email })) {
-    throw new Error('Email already exists');
+    // THIS IS THE FIX: Throwing a specific ApiError with 400 status code
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Email already exists');
   }
   const user = new User(userData);
-  return await user.save();
+  await user.save();
+  // Returning user without password
+  const userResponse = user.toObject();
+  delete userResponse.password;
+  return userResponse;
 };
 
 /**
@@ -24,8 +34,9 @@ const registerUser = async (userData) => {
  */
 const loginUser = async (email, password) => {
   const user = await User.findOne({ email });
+  // FIX: Assuming your user model has a method `matchPassword`
   if (!user || !(await user.matchPassword(password))) {
-    throw new Error('Invalid email or password');
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'Invalid email or password');
   }
 
   const payload = { id: user._id, name: user.name };
@@ -33,7 +44,6 @@ const loginUser = async (email, password) => {
     expiresIn: jwtConfig.expiresIn,
   });
 
-  // পাসওয়ার্ড ছাড়া ব্যবহারকারীর তথ্য ফেরত পাঠানো হচ্ছে
   const userResponse = {
     _id: user._id,
     name: user.name,
