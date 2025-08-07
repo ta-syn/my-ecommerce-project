@@ -1,28 +1,30 @@
+// server/src/routes/admin/admin.routes.js
+
 const express = require('express');
+const router = express.Router();
+
+// --- START: CORRECT IMPORTS (THIS IS THE FINAL FIX) ---
+// Controller-কে সঠিক পাথ থেকে ইম্পোর্ট করা হচ্ছে
 const {
   getAllUsers,
   getAllOrders,
-} = require('../../../controllers/admin.controller');
-const { protect, admin } = require('../../../middlewares/auth.middleware');
+} = require('../../controllers/admin.controller');
 
-const router = express.Router();
+// Middleware-কে সঠিক পাথ থেকে ইম্পোর্ট করা হচ্ছে
+const { protect, admin } = require('../../middlewares/auth.middleware');
+// --- END: CORRECT IMPORTS ---
 
-// এই ফাইলের সকল রাউটের আগে protect এবং admin মিডলওয়্যারটি ব্যবহার করা যেতে পারে
-// router.use(protect, admin);
 
-// @route   GET /api/admin/users
+// @route   GET /api/v1/admin/users
 // @desc    Get all users (Admin only)
 // @access  Private/Admin
 router.get('/users', protect, admin, getAllUsers);
 
-// @route   GET /api/admin/orders
+
+// @route   GET /api/v1/admin/orders
 // @desc    Get all orders (Admin only)
 // @access  Private/Admin
 router.get('/orders', protect, admin, getAllOrders);
 
-// এখানে পণ্য যোগ, আপডেট, ডিলেট করার রাউটগুলোও রাখা যায়
-// যেমন:
-// router.put('/products/:id', protect, admin, updateProduct);
-// router.delete('/products/:id', protect, admin, deleteProduct);
 
 module.exports = router;
