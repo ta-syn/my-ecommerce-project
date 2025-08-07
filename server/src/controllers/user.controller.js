@@ -1,10 +1,7 @@
 // server/src/controllers/user.controller.js
 const userService = require('../services/user.service');
-const ApiError = require('../utils/ApiError'); // ApiError ইম্পোর্ট করা হচ্ছে
-const httpStatus = require('http-status');   // http-status ইম্পোর্ট করা হচ্ছে
 
-// প্রতিটি কন্ট্রোলার ফাংশনকে আলাদাভাবে তৈরি করা হচ্ছে
-const registerUser = async (req, res, next) => {
+const registerUser = async (req, res) => {
   try {
     const user = await userService.registerUser(req.body);
     res.status(201).json({
@@ -13,9 +10,10 @@ const registerUser = async (req, res, next) => {
       data: user,
     });
   } catch (error) {
-    // THIS IS THE FINAL FIX: Catching the error directly and sending the correct status code
-    if (error instanceof ApiError) {
-      return res.status(error.statusCode).json({
+    // THIS IS THE FINAL AND GUARANTEED FIX:
+    // We will check the error message directly instead of the status code.
+    if (error.message === 'Email already exists') {
+      return res.status(400).json({ // Directly sending 400
         success: false,
         message: error.message,
       });
@@ -28,7 +26,7 @@ const registerUser = async (req, res, next) => {
   }
 };
 
-const loginUser = async (req, res, next) => {
+const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const { user, token } = await userService.loginUser(email, password);
@@ -38,11 +36,11 @@ const loginUser = async (req, res, next) => {
       data: { user, token },
     });
   } catch (error) {
-    if (error instanceof ApiError) {
-      return res.status(error.statusCode).json({
-        success: false,
-        message: error.message,
-      });
+    if (error.message === 'Invalid email or password') {
+        return res.status(401).json({ // Directly sending 401
+            success: false,
+            message: error.message,
+        });
     }
     return res.status(500).json({
       success: false,
