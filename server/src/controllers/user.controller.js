@@ -1,13 +1,14 @@
+// server/src/controllers/user.controller.js
 const userService = require('../services/user.service');
 const catchAsync = require('../utils/catchAsync');
 
+// প্রতিটি কন্ট্রোলার ফাংশনকে আলাদাভাবে তৈরি করা হচ্ছে
 const registerUser = catchAsync(async (req, res) => {
   const user = await userService.registerUser(req.body);
   res.status(201).json({
     success: true,
     message: 'User registered successfully. Please login.',
-    // CHANGE: অব্যবহৃত ভেরিয়েবলের ওয়ার্নিং ঠিক করার জন্য user ডেটা রেসপন্সে যোগ করা হলো।
-    data: user, 
+    data: user,
   });
 });
 
@@ -22,14 +23,14 @@ const loginUser = catchAsync(async (req, res) => {
 });
 
 const getUserProfile = catchAsync(async (req, res) => {
-  // auth.middleware থেকে req.user অবজেক্টটি ব্যবহার করা হচ্ছে
   res.status(200).json({
     success: true,
     message: 'Profile fetched successfully',
-    data: req.user, // ডেটাবেস থেকে পাওয়া আসল ইউজার ডেটা
+    data: req.user,
   });
 });
 
+// CHANGE: module.exports কে একটি অবজেক্ট হিসেবে এক্সপোর্ট করা হচ্ছে
 module.exports = {
   registerUser,
   loginUser,
