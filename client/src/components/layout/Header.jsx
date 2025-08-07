@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'; // useContext ইম্প�
 import { Link, NavLink } from 'react-router-dom';
 import CartContext from '../../contexts/CartContext'; // CartContext ইম্পোর্ট করা হলো
 import { useAuth } from '../../hooks/useAuth'; // useAuth হুক
-import '../../styles/layout/_Header.scss'; // এটিই হলো সঠিক পাথ
+import '@/styles/layout/_Header.scss';
 import logo from '@/assets/images/logos/spondonhub-logo-color.svg';
 
 // আইকনগুলো
