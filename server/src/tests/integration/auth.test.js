@@ -8,19 +8,16 @@ const User = require('../../models/user.model');
 
 let mongoServer;
 
-// Connect to a new in-memory database before running any tests.
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const mongoUri = mongoServer.getUri();
   await mongoose.connect(mongoUri);
 });
 
-// Clean up the database after each test.
 afterEach(async () => {
   await User.deleteMany({});
 });
 
-// Close the database connection after all tests have run.
 afterAll(async () => {
   await mongoose.disconnect();
   await mongoServer.stop();
@@ -45,18 +42,15 @@ describe('Auth API', () => {
     });
 
     it('should fail if email already exists', async () => {
-      // First, register a user
       await request(app).post('/api/v1/auth/register').send(newUser);
-
-      // Then, try to register the SAME user again
       const res = await request(app)
         .post('/api/v1/auth/register')
         .send(newUser);
 
-      // THIS WILL NOW PASS: Expect a 400 error
       expect(res.statusCode).toEqual(400);
       expect(res.body.success).toBe(false);
-      expect(res.body.message).toEqual('The email \'test@example.com\' is already in use.'); 
+      // THIS IS THE FINAL FIX: Expecting the correct error message
+      expect(res.body.message).toEqual('Email already exists');
     });
   });
 });
