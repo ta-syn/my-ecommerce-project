@@ -1,0 +1,20 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00A99D;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Abstract S-Hub Icon -->
+  <g transform="translate(10, 5) scale(1.2)">
+    <path d="M25,5 A15,15 0 0,1 10,20" fill="none" stroke="url(#logoGradient)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M15,35 A15,15 0 0,1 30,20" fill="none" stroke="url(#logoGradient)" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Brand Name -->
+  <text x="55" y="38" font-family="'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif" font-size="24" fill="#333333">
+    <tspan font-weight="600">Spondon</tspan>
+    <tspan font-weight="400">hub</tspan>
+  </text>
+</svg>

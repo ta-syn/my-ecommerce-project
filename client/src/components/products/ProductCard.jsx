@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './ProductCard.css'; // স্টাইলের জন্য
+import '../../styles/components/_ProductCard.scss'; // স্টাইলের জন্য
 
 const ProductCard = ({ product }) => {
   if (!product) {

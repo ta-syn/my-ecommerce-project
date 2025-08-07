@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Pagination.css'; // স্টাইলের জন্য
+import '../../styles/components/_Pagination.scss'; // স্টাইলের জন্য
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];
