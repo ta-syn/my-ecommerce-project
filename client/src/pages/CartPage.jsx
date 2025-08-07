@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import cartApi from '@/services/cartApi';
+import cartApi from '../services/cartApi.js'; // .js এক্সটেনশনসহ
 import { formatCurrency } from '../utils/helpers';
 import CartContext from '../contexts/CartContext';
 import '../styles/pages/_CartPage.scss';
