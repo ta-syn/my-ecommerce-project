@@ -3,17 +3,17 @@
 const express = require('express');
 const router = express.Router();
 
-// --- START: CORRECT IMPORTS ---
-// controller গুলোকে সঠিক পাথ থেকে ইম্পোর্ট করা হচ্ছে
+// --- START: CORRECT IMPORTS (THIS IS THE FINAL FIX) ---
+// Controller-কে সঠিক পাথ থেকে ইম্পোর্ট করা হচ্ছে
 const {
   registerUser,
   loginUser,
 } = require('../../../controllers/user.controller');
 
-// validation middleware-কে সঠিক পাথ থেকে ইম্পোর্ট করা হচ্ছে
+// Validation Middleware-কে সঠিক পাথ থেকে ইম্পোর্ট করা হচ্ছে
 const validate = require('../../../middlewares/validation.middleware');
 
-// validation schema-গুলোকে সঠিক পাথ থেকে ইম্পোর্ট করা হচ্ছে
+// Validation Schema-কে সঠিক পাথ থেকে ইম্পোর্ট করা হচ্ছে
 const {
   registerValidation,
   loginValidation,
